@@ -42,14 +42,14 @@ export default function Order() {
                 <div className='md:flex md:justify-between w-full'>
                     <span className='flex md:w-[30%] justify-between mt-4 bg-Lightgrayishblue p-3 border rounded-md'>
                         <button onClick={negative}>
-                            <img src={minus} alt={minus} />
+                            <img src={minus} alt={minus} className="hover:opacity-70  duration-100" />
                         </button>
-                        <h1 >{count}</h1>
+                        <h1 className='font-semibold' >{count}</h1>
                         <button onClick={() => setCount(count + 1)}>
-                            <img src={plus} alt={plus} />
+                            <img src={plus} alt={plus}  className="hover:opacity-70  duration-100"  />
                         </button>
                     </span>
-                    <div className='flex md:w-[70%]'>
+                    <div className='flex md:w-[70%] hover:md:w-[74%] hover:opacity-90 transition-all duration-100'>
                         <button value={count} onClick={handleClick} className='bg-orangecol text-white text-[20px] gap-2 font-semibold justify-center mt-3 rounded-lg flex py-3 w-full md:w-60 '>
                             <BsCart3 color='#ffff' size="1.5em" /> Add to cart
                         </button>

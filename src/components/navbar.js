@@ -13,7 +13,7 @@ export const Navbar = () => {
   const { setActiveSidebar, cartItems, cart,handleCartClick, isClicked} = useStateContext()
 
   return (
-    <div className="flex flex-row w-full p-4  bg-[#fff] z-10  relative">
+    <div className="flex flex-row w-full p-4  bg-[#fff] z-10  relative ">
       <nav className='w-full flex  justify-between items-center shadow-2xl md:h-[8em] lg:mx-16 md:shadow-none md:border-b-2 md:px-12'>
         <div className='flex flex-row space-x-2 center md:-gap-[1.5em] xl:gap-14 '>
           <button onClick={() => setActiveSidebar((prevActiveSidebar) => !prevActiveSidebar)} >
@@ -22,12 +22,12 @@ export const Navbar = () => {
           <img src={logo} className="w-[8em] h-5" alt={logo} />
           {/* for medium and large screens */}
           <span className='hidden md:flex pr-4'>
-            <ul className='md:flex md:gap-8  font-medium text-gray-500 '>
-              <li>Collections</li>
-              <li>Men</li>
-              <li>Women</li>
-              <li>About</li>
-              <li>Contact</li>
+            <ul className='md:flex md:gap-8  font-bold text-gray-500 '>
+              <li className=' hover:text-black  cursor-pointer nav-items '>Men</li>
+              <li className=' hover:text-black  cursor-pointer nav-items'>Collections</li>
+              <li className=' hover:text-black  cursor-pointer nav-items'>Women</li>
+              <li className=' hover:text-black  cursor-pointer nav-items'>About</li>
+              <li className=' hover:text-black  cursor-pointer nav-items'>Contact</li>
             </ul>
           </span>
         </div>
@@ -39,7 +39,7 @@ export const Navbar = () => {
           bg-orangecol px-[0.5em] rounded-full'>{cartItems}</label>
           <div className='flex  w-full'>{isClicked && (<Cart />)}</div>
                
-          <img src={avatar} alt={avatar} className="w-8 h-8 hover:border-2 hover:border-rounded-full hover:border-orange-600" />
+          <img src={avatar} alt={avatar} className="w-8 h-8 hover:border-2 rounded-full hover:border-orange-600" />
         </div>
       </nav>
     </div>

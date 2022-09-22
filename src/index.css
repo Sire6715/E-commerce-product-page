@@ -8,9 +8,39 @@ body{
 
 .sidebar{
     transition: all 2s ease-in;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+}
+
+.nav-items:hover{
+    border-bottom: 4px solid  #ff7d1a;
+    transition: all 0.3s;
+}
+
+.background{
+    background: rgba(0, 0, 0, 0.671);
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
 }
 
 @media (min-width: 765px) {
+
+.fade--in{
+    width: 10%;
+    opacity: 0;
+    transition: all .75s ease;
+}
+
+.fade--in.show{
+    opacity: 1;
+    width: 100%;
+}
     
 .one{
     display: grid;
