@@ -76,7 +76,7 @@ export default function Slider() {
             animate={{ scale: "100%" }}
             onClick={() => setActiveSidebar(false)} className='shoe--grid gap-2  '>
             {shoeData.map((shoes, index) => (
-                <div className='grid--one pl-4' onClick={screen ? () => handleImgClick() : undefined} key={shoes.id}>
+                <div className='grid--one md:pl-4' onClick={screen ? () => handleImgClick() : undefined} key={shoes.id}>
                     <div>
 
                         {/* image slider */}
