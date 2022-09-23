@@ -22,10 +22,11 @@ export default function Order() {
             {/* article */}
             <div>
                 <h4 className='text-[12px] tracking-wide my-2 font-black text-orangecol uppercase md:text-[14px]'>sneaker company</h4>
-                <h1 className='text-3xl font-black leading-8 mt-3 md:text-5xl'>Fall Limited Edition Sneakers</h1>
-                <p className='text-[13px] mt-3 font-semibold text-slate-500 leading-6 md:text-xl md:font-medium md:leading-8 md:pt-6'>These low-profie sneakers are your percect
-                    casual wear companjon.Featuring a durable rubber
-                    outer sole,they'll withstand everything the weather
+                <h1 className='heading  font-black leading-9 mt-3 '>Fall Limited Edition Sneakers</h1>
+                <p className='paragraph mt-3 font-semibold text-slate-500 leading-6 md:font-medium md:leading-8 md:pt-6'>
+                    These low-profie sneakers are your perfect
+                    casual wear companion.Featuring a durable rubber
+                    outer sole,that'll withstand everything the weather
                     can offer.
                 </p>
             </div>
@@ -49,7 +50,7 @@ export default function Order() {
                             <img src={plus} alt={plus}  className="hover:opacity-70  duration-100"  />
                         </button>
                     </span>
-                    <div className='flex md:w-[70%] hover:md:w-[74%] hover:opacity-90 transition-all duration-100'>
+                    <div className='flex md:min-w-[70%]  hover:opacity-90 transition-all duration-100'>
                         <button value={count} onClick={handleClick} className='bg-orangecol text-white text-[20px] gap-2 font-semibold justify-center mt-3 rounded-lg flex py-3 w-full md:w-60 '>
                             <BsCart3 color='#ffff' size="1.5em" /> Add to cart
                         </button>

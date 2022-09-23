@@ -6,6 +6,13 @@ body{
     box-sizing: border-box;
 }
 
+.heading{
+    font-size:  clamp(1.875rem, 2.5vw, 3rem );
+}
+.paragraph{
+    font-size:  clamp(1rem, 2.5vw, 1.2rem );
+}
+
 .sidebar{
     transition: all 2s ease-in;
     top: 0;

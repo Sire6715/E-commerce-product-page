@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState,useEffect } from "react";
 
 
+
 const StateContext = createContext();
 
 export const ContextProvider = ({ children }) => {
@@ -10,7 +11,7 @@ export const ContextProvider = ({ children }) => {
     const [cartItems, setCartItems] = useState(0)
     const [isClicked, setIsClicked] = useState(false);
     const [screenSize, setScreenSize] = useState(undefined)
-    const [hoverShoes,setHoverShoes] = useState(false)
+    const [hoverShoes,setHoverShoes] = useState(undefined)
     const [hoverSlideIndex,setHoverSlideIndex] = useState(0)
     const [imageDisplay, setImageDisplay] = useState(undefined)
     const [screen,setScreen] = useState(undefined)
@@ -33,10 +34,9 @@ export const ContextProvider = ({ children }) => {
     }, []);
     
 
-   
 
     const handleCartClick = (clicked) => setIsClicked(prevIsClicked=>!prevIsClicked);
-    const handleImgClick = (clicked) => setHoverShoes(prevHoverState=>true);
+
    
     
     return (
@@ -56,7 +56,6 @@ export const ContextProvider = ({ children }) => {
                 setCartItems,
                 screenSize, 
                 setScreenSize,
-                handleImgClick,
                 setHoverShoes,
                 hoverShoes,
                 hoverSlideIndex,
@@ -64,7 +63,7 @@ export const ContextProvider = ({ children }) => {
                 imageDisplay, 
                 setImageDisplay,
                 screen,
-                setScreen
+                setScreen,
             }}>
             {children}
         </StateContext.Provider>

@@ -3,14 +3,13 @@ import shoeData from "./Data"
 import next from "./images/icon-next.svg"
 import prev from "./images/icon-previous.svg"
 import { useStateContext } from '../context/ContextProvider'
+import { motion } from 'framer-motion'
 
 
 
 
 export default function Slider() {
-    const { setActiveSidebar, slideIndex, setSlideIndex, screenSize, setScreenSize, hoverShoes, setHoverShoes, screen, setScreen, imageDisplay, setImageDisplay } = useStateContext();
-
-
+    const { setActiveSidebar, slideIndex, setSlideIndex, screenSize, setScreenSize,  setHoverShoes, screen, setScreen, imageDisplay, setImageDisplay} = useStateContext();
 
 
     useEffect(() => {
@@ -41,6 +40,8 @@ export default function Slider() {
         }
     }
 
+
+
     function prevSlide() {
         if (slideIndex !== 1) {
             setSlideIndex(slideIndex - 1)
@@ -66,50 +67,60 @@ export default function Slider() {
         }
     }, [screenSize]);
 
-    const handleImgClick = () => setHoverShoes(!hoverShoes)
-
-
-
+    const handleImgClick = () => setHoverShoes(prevState => true)
 
 
     return (
-        <div onClick={() => setActiveSidebar(false)} className='shoe--grid gap-2  '>
+        <motion.div
+            initial={{ scale: "30%" }}
+            animate={{ scale: "100%" }}
+            onClick={() => setActiveSidebar(false)} className='shoe--grid gap-2  '>
             {shoeData.map((shoes, index) => (
+                <div className='grid--one pl-4' onClick={screen ? () => handleImgClick() : undefined} key={shoes.id}>
+                    <div>
 
-                <div className = 'grid--one'  onClick = { screen?() =>handleImgClick(): undefined} key={shoes.id}>
-            <div>
-                {/* image slider */}
-                {imageDisplay ?
-                    (<div className={imageDisplay === index ? "flex  " : "hidden"}>
-                        <img src={shoes.img} alt="shoe" className='relative  -z-10 mt-0 md:mt-4 md:rounded-lg h-auto min-w-[100%] ' />
-                    </div>) :
-                    (
-                        <div className={slideIndex === index + 1 ? "flex " : "hidden"}>
-                            <img src={shoes.img} alt="shoe" className='relative -z-10 mt-0 md:mt-4 md:rounded-lg h-auto min-w-[100%] ' />
-                        </div>)}
-                {console.log(handleImgClick)}
-                <div className=" absolute flex top-40 justify-between w-full p-4 md:hidden">
-                    <button onClick={nextSlide} className='p-3 bg-neutral-50 rounded-full'>
-                        <img src={prev} alt={prev} className="w-2 h-2" />
-                    </button>
-                    <button onClick={prevSlide} className='p-3  bg-neutral-50 rounded-full'>
-                        <img src={next} alt={next} className="w-2 h-2" />
-                    </button>
+                        {/* image slider */}
+                        {imageDisplay ?
+                            (<div className={imageDisplay === index ? "flex  " : "hidden"}>
+                                <img src={shoes.img} alt="shoe" className='relative  -z-10 mt-0 md:mt-4 md:rounded-lg h-auto min-w-[100%] ' />
+                            </div>) :
+                            (
+                                // mobileScreen
+                                <div  className={slideIndex === index + 1 ? "flex " : "hidden"}>
+                                    <img src={shoes.img} alt="shoe" className='relative -z-10 mt-0 md:mt-4 md:rounded-lg h-auto min-w-[100%] ' />
+                                </div>)}
+                        {/* sliderButton */}
+                        {imageDisplay ? ("") : (
+                            <div className=" absolute flex top-40 justify-between w-full p-4 md:hidden">
+                                <button onClick={nextSlide} className='p-3 bg-neutral-50 rounded-full'>
+                                    <motion.img
+                                        whileTap={{ x: "-0.5em" }}
+                                        src={prev} alt={prev} className="w-2 h-2" />
+                                </button>
+                                <button onClick={prevSlide} className='p-3  bg-neutral-50 rounded-full'>
+                                    <motion.img
+                                        whileTap={{ x: "0.5em" }} src={next} alt={next} className="w-2 h-2" />
+                                </button>
+                            </div>
+                        )}
+
+                    </div>
                 </div>
+            ))
+            }
+            {/* // thumbnail grid */}
+            <div
+                className='hidden grid--two gap-9'>
+                {shoeData.map((shoes, index) => (
+                    <div key={shoes.id}>
+                        <div className='grid-span' onClick={() => (index === imageDisplay)} >
+                            <img onClick={() => (setImageDisplay(index, shoes))} src={shoes.thumbnail} alt={shoes.thumbnail}
+                                className={index === imageDisplay ? " rounded-lg max-w-[95%] hover:w-[110%] hover:cursor-pointer hover:border-4 border-orangecol border-4 transition-all duration-75 hover:opacity-75 " :
+                                    " rounded-lg hover:w-[110%] hover:cursor-pointer hover:border-4 border-orangecol transition-all duration-75 hover:opacity-75 "} />
+                        </div>
+                    </div>
+                ))}
             </div>
-        </div>
-    ))
-}
-{/* // thumbnail grid */ }
-<div className='hidden grid--two gap-9'>
-    {shoeData.map((shoes, index) => (
-        <div key={shoes.id}>
-            <div className='grid-span' onClick={() => (index === imageDisplay)} >
-                <img onClick={() => (setImageDisplay(index, shoes))} src={shoes.thumbnail} alt={shoes.thumbnail} className=" rounded-lg hover:w-[110%] hover:cursor-pointer hover:border-4 border-orangecol transition-all duration-75 hover:opacity-75" />
-            </div>
-        </div>
-    ))}
-</div>
-        </div >
+        </motion.div >
     )
 }

@@ -1,8 +1,9 @@
 export default [
-    {
+    { 
         "id": 1,
         "img": "images/image-product-1.jpg",
-        "thumbnail":"images/image-product-1-thumbnail.jpg"
+        "thumbnail":"images/image-product-1-thumbnail.jpg",
+        "style":{border: '20px solid  #ff7d1a;'}
     },
     {
         "id": 2,

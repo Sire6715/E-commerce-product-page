@@ -5,11 +5,10 @@ import Slider from './components/slider';
 import Order from './components/order';
 import { useStateContext } from './context/ContextProvider';
 import shoeData from "./components/Data"
-import next from "./components/images/icon-next.svg"
-import prev from "./components/images/icon-previous.svg"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { library, Library } from '@fortawesome/fontawesome-svg-core';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { faChevronLeft, faChevronRight, faXmark } from '@fortawesome/free-solid-svg-icons';
+import { motion } from "framer-motion"
 
 library.add(faXmark, faChevronLeft,faChevronRight)
 
@@ -56,25 +55,38 @@ export default function App() {
     }
   }
 
-console.log(imageDisplay)
+
 
   return (
     <div className={hoverShoes ? "relative font-kumbh border-box pb-[4em]" : 'font-kumbh border-box  '}>
       {hoverShoes ?
        (<div className=' flex justify-center items-center z-50 background absolute h-screen w-full  transition-all duration-200 '>
-        <div className='w-[35%] hover:w-[36%] transition-all duration-300 relative flex flex-col justify-center items-center '>
-        <div className=' absolute flex top-[37%] justify-between   w-[110%] '>
-            <button onClick={prevSlide} className='p-5 bg-neutral-50 rounded-full'>
+        <div
+        className='w-[35%] hover:w-[36%] transition-all duration-300 relative flex flex-col justify-center items-center '>
+        <div className=' absolute flex top-[37%] justify-between  z-10  w-[110%] '>
+            <motion.button 
+            whileTap={{
+              x:"-2em"
+            }}
+            onClick={prevSlide} className='p-5 bg-neutral-50 rounded-full '>
               <FontAwesomeIcon icon="fa-solid fa-chevron-left" className='text-3xl  hover:text-4xl  hover:text-orangecol transition-all duration-200 hover:drop-shadow-2xl' />
-            </button>
-            <button onClick={nextSlide} className='p-5  bg-neutral-50 rounded-full'>
+            </motion.button>
+            <motion.button 
+              whileTap={{
+                x:"2em"
+              }}
+            onClick={nextSlide} className='p-5  bg-neutral-50 rounded-full'>
               <FontAwesomeIcon icon="fa-solid fa-chevron-right" className='text-3xl hover:text-4xl hover:text-orangecol transition-all duration-200 hover:drop-shadow-2xl'  />
-            </button>
+            </motion.button>
           </div>
           {hoverShoes && <Slider />}
-          <button className='absolute -top-6 -right-8  '>
+          <motion.button
+          whileHover={{
+            rotate:"360deg"
+          }}
+           className='absolute -top-6 -right-8  '>
             <FontAwesomeIcon icon="fa-solid fa-xmark" onClick={() => setHoverShoes(false)} className="text-3xl text-white hover:text-orangecol " />
-          </button>
+          </motion.button>
         </div>
       </div>
       ) : ( "")}
@@ -84,6 +96,7 @@ console.log(imageDisplay)
         <Slider />
         <Order />
       </div>
+      <p className=" text-black text-[16px] text-center">Challenge by <span className="text-blue-600">Frontend Mentor</span>. Coded by <span className="text-blue-600">sire</span>.</p>
       {/* <Cart /> */}
     </div>
   )
